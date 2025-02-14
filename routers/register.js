@@ -21,7 +21,7 @@ router.post('/', async (req, res) => {
     // Création du token
     const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
     // URL de vérification
-    const url = `http://localhost:${process.env.PORT}/verify/${token}`;
+    const url = `https://supabase-email-verification.vercel.app/verify/${token}`;
 
     // Envoi du mail de vérification
     await transporter.sendMail({

@@ -21,7 +21,7 @@ router.post('/', async (req, res) => {
 
     // Générer un token JWT pour la réinitialisation du mot de passe
     const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: '1h' });
-    const resetUrl = `http://localhost:5000/reset-password/${token}`;
+    const resetUrl = `https://supabase-email-verification.vercel.app/reset-password/${token}`;
 
     // Envoyer l'e-mail de réinitialisation
     await transporter.sendMail({

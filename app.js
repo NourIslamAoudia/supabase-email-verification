@@ -6,6 +6,10 @@ const cors = require("cors");
 const { createClient } = require('@supabase/supabase-js');
 const verifyRouter = require('./routers/verify');
 const registerRouter = require('./routers/register');
+const forgotPasswordRouter = require('./routers/forgot-password');
+const resetPasswordRouter = require('./routers/reset-password');
+const logoutRouter = require('./routers/logout');
+const loginRouter = require('./routers/login');
 
 const app = express();
 app.use(express.json());
@@ -28,13 +32,19 @@ const transporter = nodemailer.createTransport({
 });
 
 // Middleware pour passer supabase et transporter aux routeurs
+// pour caque requête envoyer à /verify et /register elle envoyer les données de supabase et transporter
 app.use((req, res, next) => {
   req.supabase = supabase;
   req.transporter = transporter;
   next();
 });
+
 app.use('/verify', verifyRouter);
 app.use('/register', registerRouter);
+app.use('/forgot-password', forgotPasswordRouter);
+app.use('/reset-password', resetPasswordRouter);
+app.use('/logout', logoutRouter);
+app.use('/login', loginRouter);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

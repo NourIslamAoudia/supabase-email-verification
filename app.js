@@ -32,7 +32,7 @@ const transporter = nodemailer.createTransport({
 });
 
 // Middleware pour passer supabase et transporter aux routeurs
-// pour caque requête envoyer à /verify et /register elle envoyer les données de supabase et transporter
+// pour chaque requête envoyer à /verify et /register elle envoyer les données de supabase et transporter
 app.use((req, res, next) => {
   req.supabase = supabase;
   req.transporter = transporter;

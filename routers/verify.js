@@ -2,7 +2,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 
-router.get('/:token', async (req, res) => {
+router.get('/:token', async (req, res) => {// : car c'est un paramètre
   const { token } = req.params;
   const supabase = req.supabase;
 

@@ -27,8 +27,9 @@ router.post('/', async (req, res) => {
     await transporter.sendMail({
       to: user.email,
       subject: 'Verify your email',
-      html: `Click <a href="${url}">here</a> to verify your email.`,
+      html: `Click <a href="${url}">here</a> to verify your email.`,//si clique il appele le endpoint /verify
     });
+    
     // Réponse au client
     res.send('Registration successful, please check your email to verify your account');
   } catch (error) {
